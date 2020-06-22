@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class EventCategory(models.Model):
@@ -14,4 +15,7 @@ class EventCategory(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('event-category-list')
 
