@@ -37,7 +37,7 @@
                                     <td><img src="{{ category.image.url }}" alt="Image" height="50px"></td>
                                     <td>{{ category.status }}</td>
                                     <td>
-                                        <a class="btn btn-info" href="#">
+                                        <a class="btn btn-info" href="{% url 'edit-event-category' category.pk %}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>

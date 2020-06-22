@@ -1,5 +1,4 @@
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from .models import EventCategory
 
@@ -19,3 +18,9 @@ class EventCategoryCreateView(CreateView):
         form.instance.created_user = self.request.user
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
+
+
+class EventCategoryUpdateView(UpdateView):
+    model = EventCategory
+    fields = ['name', 'code', 'image', 'priority', 'status']
+    template_name = 'events/edit_event_category.html'
