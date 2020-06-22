@@ -35,7 +35,7 @@
                                     <td>{{ event.category }}</td>
                                     <td>{{ event.status }}</td>
                                     <td>
-                                        <a class="btn btn-info" href="#">
+                                        <a class="btn btn-info" href="{% url 'event-edit' event.pk %}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>
