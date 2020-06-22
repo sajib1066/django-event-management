@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView
 
-from .models import EventCategory
+from .models import EventCategory, Event
 
 # Event category list view
 class EventCategoryListView(ListView):
@@ -24,3 +24,14 @@ class EventCategoryUpdateView(UpdateView):
     model = EventCategory
     fields = ['name', 'code', 'image', 'priority', 'status']
     template_name = 'events/edit_event_category.html'
+
+
+class EventCreateView(CreateView):
+    model = Event
+    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status']
+    template_name = 'events/create_event.html'
+
+    def form_valid(self, form):
+        form.instance.created_user = self.request.user
+        form.instance.updated_user = self.request.user
+        return super().form_valid(form)
