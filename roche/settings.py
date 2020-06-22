@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'crispy_forms',
+    'mapbox_location_field',
 
     # Local apps
     'events.apps.EventsConfig',
@@ -132,3 +133,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Crsipy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Mapbox key define
+MAPBOX_KEY = "pk.eyJ1IjoibWlnaHR5c2hhcmt5IiwiYSI6ImNqd2duaW4wMzBhcWI0M3F1MTRvbHB0dWcifQ.1sDAD43q0ktK1Sr374xGfw"
+
