@@ -35,3 +35,9 @@ class EventCreateView(CreateView):
         form.instance.created_user = self.request.user
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
+
+
+class EventListView(ListView):
+    model = Event
+    template_name = 'events/event_list.html'
+    context_object_name = 'events'

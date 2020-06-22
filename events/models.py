@@ -44,7 +44,7 @@ class Event(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('dashboard')
+        return reverse('event-list')
 
 
 
