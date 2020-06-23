@@ -3,7 +3,9 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DetailView,
+    DeleteView,
 )
+from django.urls import reverse_lazy
 
 from .models import (
     EventCategory,
@@ -86,4 +88,10 @@ class JoinEventListView(ListView):
     model = EventMember
     template_name = 'events/joinevent_list.html'
     context_object_name = 'eventmember'
+
+
+class RemoveEventMemberDeleteView(DeleteView):
+    model = EventMember
+    template_name = 'events/remove_event_member.html'
+    success_url = reverse_lazy('join-event-list')
 
