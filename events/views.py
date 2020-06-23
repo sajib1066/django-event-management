@@ -81,3 +81,9 @@ class AddEventMemberCreateView(CreateView):
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
 
+
+class JoinEventListView(ListView):
+    model = EventMember
+    template_name = 'events/joinevent_list.html'
+    context_object_name = 'eventmember'
+
