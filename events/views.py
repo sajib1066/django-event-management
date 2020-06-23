@@ -117,3 +117,9 @@ class AddEventUserWishListCreateView(CreateView):
         form.instance.created_user = self.request.user
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
+
+
+class RemoveEventUserWishDeleteView(DeleteView):
+    model = EventUserWishList
+    template_name = 'events/remove_event_user_wish.html'
+    success_url = reverse_lazy('event-wish-list')

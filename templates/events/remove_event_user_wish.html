@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% block title %}Remove Event User Wish{% endblock title %}
+{% block breadcrumb %}Remove Event User Wish{% endblock breadcrumb %}
+
+{% block content %}
+    <h1>Remove Event User Wish</h1>
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ eventuserwishlist.user }}" from "{{ eventuserwishlist.event }}" Event?</p>
+        <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+    </form>
+{% endblock content %}

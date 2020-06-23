@@ -37,8 +37,8 @@
                                     <td>{{ wish.user }}</td>
                                     <td>{{ wish.status }}</td>
                                     <td>
-                                        <a class="btn btn-info" href="#">
-                                            <i class="fa fa-edit"></i>
+                                        <a class="btn btn-danger" href="{% url 'remove-event-user-wish' wish.id %}">
+                                            <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>
