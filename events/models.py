@@ -73,6 +73,10 @@ class EventMember(models.Model):
     updated_date = models.DateField(auto_now_add=True)
     status = models.IntegerField()
 
+
+    class Meta:
+        unique_together = ['event', 'user']
+
     def __str__(self):
         return str(self.user)
     
@@ -88,6 +92,10 @@ class EventUserWishList(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status = models.IntegerField()
+
+
+    class Meta:
+        unique_together = ['event', 'user']
 
     def __str__(self):
         return str(self.event)
