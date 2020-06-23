@@ -77,7 +77,7 @@ class EventMember(models.Model):
         return str(self.user)
     
     def get_absolute_url(self):
-        return reverse('dashboard')
+        return reverse('join-event-list')
 
 
 class EventUserWishList(models.Model):
