@@ -3,6 +3,17 @@
 {% block breadcrumb %}Edit Event{% endblock breadcrumb %}
 {% load crispy_forms_tags %}
 
+{% block extrahead %}
+    <!-- Mapbox Configuration -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
+    {% load mapbox_location_field_tags %}
+    {% location_field_includes %}
+    {% include_jquery %}
+    <!-- Mapbox Configuration -->
+{% endblock extrahead %}
+
 {% block content %}
     <div class="row">
         <div class="col-md-12">
@@ -21,10 +32,19 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form|crispy  }}
-                        <button class="btn btn-success ml-2" type="submit">Update</button>
+                        <button class="btn btn-success ml-2" type="submit">Update Event</button>
                     </form>
+                    {{ form.media }}
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FqaWIxMDY2IiwiYSI6ImNrYnJqb2x6NDAyN2cyc3BuenoxemNjdmEifQ.uWDYuTOqXB9KMPBmeDxORw';
+        var map = new mapboxgl.Map({
+        container: 'location-field-map',
+        style: 'mapbox://styles/mapbox/streets-v11'
+        });
+    </script>
 {% endblock content %}
