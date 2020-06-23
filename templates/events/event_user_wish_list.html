@@ -21,7 +21,6 @@
                         <thead>                  
                           <tr>
                             <th style="width: 10px">#</th>
-                            <th>Event</th>
                             <th>User</th>
                             <th>Status</th>
                             <th style="width: 40px">Action</th>
@@ -31,9 +30,6 @@
                             {% for wish in eventwish %}
                                 <tr role="row">
                                     <td>{{ forloop.counter }}</td>
-                                    <td>
-                                        <a href="{% url 'event-detail' wish.event.id %}">{{ wish.event }}</a>
-                                    </td>
                                     <td>{{ wish.user }}</td>
                                     <td>{{ wish.status }}</td>
                                     <td>
