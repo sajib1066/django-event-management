@@ -53,6 +53,12 @@ class EventCreateView(CreateView):
         form.instance.created_user = self.request.user
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
+    
+    # def get_form(self, form_class):
+    #     form = super(EventCreateView, self).get_form(form_class)
+    #     form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+    #     form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+    #     return form
 
 
 class EventListView(ListView):
