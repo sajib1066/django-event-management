@@ -1,4 +1,9 @@
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DetailView,
+)
 
 from .models import EventCategory, Event
 
@@ -47,4 +52,10 @@ class EventUpdateView(UpdateView):
     model = Event
     fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'points', 'maximum_attende', 'status']
     template_name = 'events/edit_event.html'
+
+
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'events/event_detail.html'
+    context_object_name = 'event'
 

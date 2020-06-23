@@ -31,7 +31,9 @@
                             {% for event in events %}
                                 <tr role="row">
                                     <td>{{ forloop.counter }}</td>
-                                    <td>{{ event.name }}</td>
+                                    <td>
+                                        <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
+                                    </td>
                                     <td>{{ event.category }}</td>
                                     <td>{{ event.status }}</td>
                                     <td>

@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block title %}Event Detail{% endblock title %}
+{% block breadcrumb %}Event Detail{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h2>Event Detail</h2>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-success" href="{% url 'event-list' %}">Event List</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2>Event Name: {{ event.name }}</h2>
+                    <h4>Event Category: {{ event.category }}</h4>
+                    <h4>Uid: {{ event.uid }}</h4>
+                    <h4>Description: {{ event.descrih4tion }}</h4>
+                    <h4>Scheduled Status: {{ event.scheduled_status }}</h4>
+                    <h4>Venue: {{ event.venue }}</h4>
+                    <h4>Agenda: {{ event.agenda }}</h4>
+                    <h4>Start Date: {{ event.start_date }}</h4>
+                    <h4>End Date: {{ event.end_date }}</h4>
+                    <h4>Location: {{ event.location }}</h4>
+                    <h4>Points: {{ event.points }}</h4>
+                    <h4>Maximum Attende: {{ event.maximum_attende }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
