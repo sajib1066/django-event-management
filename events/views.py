@@ -106,3 +106,14 @@ class EventUserWishListView(ListView):
     model = EventUserWishList
     template_name = 'events/event_user_wish_list.html'
     context_object_name = 'eventwish'
+
+
+class AddEventUserWishListCreateView(CreateView):
+    model = EventUserWishList
+    fields = ['event', 'user', 'status']
+    template_name = 'events/add_event_user_wish.html'
+
+    def form_valid(self, form):
+        form.instance.created_user = self.request.user
+        form.instance.updated_user = self.request.user
+        return super().form_valid(form)

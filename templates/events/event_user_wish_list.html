@@ -12,7 +12,7 @@
                             <h2>Event User Wish List</h2>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-success" href="{% url 'event-create' %}">Add Event User Wish</a>
+                            <a class="btn btn-success" href="{% url 'add-event-wish-user' %}">Add Event User Wish</a>
                         </div>
                     </div>
                 </div>
@@ -32,9 +32,9 @@
                                 <tr role="row">
                                     <td>{{ forloop.counter }}</td>
                                     <td>
-                                        <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
+                                        <a href="{% url 'event-detail' wish.event.id %}">{{ wish.event }}</a>
                                     </td>
-                                    <td>{{ wish.event }}</td>
+                                    <td>{{ wish.user }}</td>
                                     <td>{{ wish.status }}</td>
                                     <td>
                                         <a class="btn btn-info" href="#">

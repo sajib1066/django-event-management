@@ -91,6 +91,9 @@ class EventUserWishList(models.Model):
 
     def __str__(self):
         return str(self.event)
+    
+    def get_absolute_url(self):
+        return reverse('event-wish-list')
 
 
 class EventImage(models.Model):
