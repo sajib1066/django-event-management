@@ -5,7 +5,18 @@ from django.views.generic import (
     DetailView,
 )
 
-from .models import EventCategory, Event
+from .models import (
+    EventCategory,
+    Event,
+    JobCategory,
+    EventJobCategoryLinking,
+    EventMember,
+    EventUserWishList,
+    EventImage,
+    UserCoin,
+    EventNotofication,
+    EventNotoficationHistory,
+)
 
 # Event category list view
 class EventCategoryListView(ListView):
@@ -58,4 +69,15 @@ class EventDetailView(DetailView):
     model = Event
     template_name = 'events/event_detail.html'
     context_object_name = 'event'
+
+
+class AddEventMemberCreateView(CreateView):
+    model = EventMember
+    fields = ['event', 'user', 'attend_status', 'status']
+    template_name = 'events/add_event_member.html'
+
+    def form_valid(self, form):
+        form.instance.created_user = self.request.user
+        form.instance.updated_user = self.request.user
+        return super().form_valid(form)
 
