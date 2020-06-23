@@ -101,3 +101,8 @@ class RemoveEventMemberDeleteView(DeleteView):
     template_name = 'events/remove_event_member.html'
     success_url = reverse_lazy('join-event-list')
 
+
+class EventUserWishListView(ListView):
+    model = EventUserWishList
+    template_name = 'events/event_user_wish_list.html'
+    context_object_name = 'eventwish'

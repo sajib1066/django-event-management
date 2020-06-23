@@ -10,7 +10,8 @@ from .views import (
     EventDetailView,
     AddEventMemberCreateView,
     JoinEventListView,
-    RemoveEventMemberDeleteView
+    RemoveEventMemberDeleteView,
+    EventUserWishListView
 )
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     path('add-event-member/', AddEventMemberCreateView.as_view(), name='add-event-member'),
     path('join-event-list/', JoinEventListView.as_view(), name='join-event-list'),
     path('event-member/<int:pk>/remove/', RemoveEventMemberDeleteView.as_view(), name='remove-event-member'),
+    path('event-wish-list/', EventUserWishListView.as_view(), name='event-wish-list'),
 ]

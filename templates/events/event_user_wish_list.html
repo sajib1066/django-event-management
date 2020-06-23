@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% block title %}Event User Wish List{% endblock title %}
+{% block breadcrumb %}Event User Wish List{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h2>Event User Wish List</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-success" href="{% url 'event-create' %}">Add Event User Wish</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>                  
+                          <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Event</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th style="width: 40px">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for wish in eventwish %}
+                                <tr role="row">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                        <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
+                                    </td>
+                                    <td>{{ wish.event }}</td>
+                                    <td>{{ wish.status }}</td>
+                                    <td>
+                                        <a class="btn btn-info" href="#">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
