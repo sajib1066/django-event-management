@@ -19,6 +19,8 @@ from .models import (
     EventNotofication,
     EventNotoficationHistory,
 )
+from .forms import EventForm
+
 
 # Event category list view
 class EventCategoryListView(ListView):
@@ -54,11 +56,11 @@ class EventCreateView(CreateView):
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
     
-    # def get_form(self, form_class):
-    #     form = super(EventCreateView, self).get_form(form_class)
-    #     form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
-    #     form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
-    #     return form
+    def get_form(self, form_class=EventForm):
+        form = super(EventCreateView, self).get_form(form_class)
+        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+        return form
 
 
 class EventListView(ListView):
