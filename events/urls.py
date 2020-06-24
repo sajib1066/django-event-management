@@ -18,6 +18,7 @@ from .views import (
     CompleteEventList,
     AbsenseUserList,
     CompleteEventUserList,
+    CreateUserMark,
 )
 
 urlpatterns = [
@@ -38,4 +39,5 @@ urlpatterns = [
     path('complete-event/', CompleteEventList.as_view(), name='complete-event'),
     path('absense-user/', AbsenseUserList.as_view(), name='absense-user'),
     path('complete-event-user/', CompleteEventUserList.as_view(), name='complete-event-user'),
+    path('create-user-mark/', CreateUserMark.as_view(), name='create-user-mark'),
 ]

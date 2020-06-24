@@ -158,3 +158,14 @@ class CompleteEventUserList(ListView):
 
     def get_queryset(self):
         return EventMember.objects.filter(attend_status='completed')
+
+
+class CreateUserMark(CreateView):
+    model = UserCoin
+    fields = ['user', 'gain_type', 'gain_coin', 'status']
+    template_name = 'events/create_user_mark.html'
+
+    def form_valid(self, form):
+        form.instance.created_user = self.request.user
+        form.instance.updated_user = self.request.user
+        return super().form_valid(form)
