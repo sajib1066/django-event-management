@@ -39,7 +39,12 @@ class Event(models.Model):
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
+    status_choice = (
+        ('cancel', 'Cancel'),
+        ('running', 'Running'),
+        ('finished', 'Finished'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
     def __str__(self):
         return self.name
@@ -67,7 +72,11 @@ class EventJobCategoryLinking(models.Model):
 class EventMember(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    attend_status = models.IntegerField()
+    attend_status_choice = (
+        ('attend', 'Attend'),
+        ('absense', 'Absense')
+    )
+    attend_status = models.CharField(choices=attend_status_choice, max_length=10)
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_created_user')
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_updated_user')
     created_date = models.DateField(auto_now_add=True)
