@@ -130,7 +130,7 @@ class EventImage(models.Model):
 
 
 class UserCoin(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     gain_type = models.PositiveIntegerField()
     gain_coin = models.PositiveIntegerField()
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='usercoin_created_user')
