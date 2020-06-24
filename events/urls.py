@@ -17,6 +17,7 @@ from .views import (
     UpdateEventStatusView,
     CompleteEventList,
     AbsenseUserList,
+    CompleteEventUserList,
 )
 
 urlpatterns = [
@@ -36,4 +37,5 @@ urlpatterns = [
     path('update-status/<int:pk>/event/', UpdateEventStatusView.as_view(), name='update-event-status'),
     path('complete-event/', CompleteEventList.as_view(), name='complete-event'),
     path('absense-user/', AbsenseUserList.as_view(), name='absense-user'),
+    path('complete-event-user/', CompleteEventUserList.as_view(), name='complete-event-user'),
 ]

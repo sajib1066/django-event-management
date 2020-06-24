@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% block title %}Complete Event User List{% endblock title %}
+{% block breadcrumb %}Complete Event User List{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h2>Complete Event User List</h2>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-success" href="{% url 'event-create' %}">Create Event</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>                  
+                          <tr>
+                            <th style="width: 10px">#</th>
+                            <th>User</th>
+                            <th>Event</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for completeuser in completeuser %}
+                                <tr role="row">
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ completeuser.user }}</td>
+                                    <td>{{ completeuser.event }}</td>
+                                    <td>{{ completeuser.status }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -149,3 +149,12 @@ class AbsenseUserList(ListView):
 
     def get_queryset(self):
         return EventMember.objects.filter(attend_status='absense')
+
+
+class CompleteEventUserList(ListView):
+    model = EventMember
+    template_name = 'events/complete_event_user_list.html'
+    context_object_name = 'completeuser'
+
+    def get_queryset(self):
+        return EventMember.objects.filter(attend_status='completed')
