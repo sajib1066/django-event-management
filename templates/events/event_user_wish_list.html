@@ -21,6 +21,7 @@
                         <thead>                  
                           <tr>
                             <th style="width: 10px">#</th>
+                            <th>Event</th>
                             <th>User</th>
                             <th>Status</th>
                             <th style="width: 40px">Action</th>
@@ -30,10 +31,11 @@
                             {% for wish in eventwish %}
                                 <tr role="row">
                                     <td>{{ forloop.counter }}</td>
+                                    <td>{{ wish.event }}</td>
                                     <td>{{ wish.user }}</td>
                                     <td>{{ wish.status }}</td>
                                     <td>
-                                        <a class="btn btn-danger" href="{% url 'remove-event-user-wish' wish.id %}">
+                                        <a class="btn btn-danger" href="{% url 'remove-event-user-wish' wish.event.pk %}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
