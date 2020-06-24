@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     # 3rd party apps
     'crispy_forms',
     'mapbox_location_field',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # Local apps
     'events.apps.EventsConfig',
@@ -137,3 +139,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Mapbox key define
 MAPBOX_KEY = "pk.eyJ1IjoibWlnaHR5c2hhcmt5IiwiYSI6ImNqd2duaW4wMzBhcWI0M3F1MTRvbHB0dWcifQ.1sDAD43q0ktK1Sr374xGfw"
 
+# Ckeditor config
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = "event-details/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}

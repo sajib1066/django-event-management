@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', DashboardView.as_view(), name='dashboard'),
     path('events/', include('events.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
