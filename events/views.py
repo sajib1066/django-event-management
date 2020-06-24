@@ -169,3 +169,9 @@ class CreateUserMark(CreateView):
         form.instance.created_user = self.request.user
         form.instance.updated_user = self.request.user
         return super().form_valid(form)
+
+
+class UserMarkList(ListView):
+    model = UserCoin
+    template_name = 'events/user_mark_list.html'
+    context_object_name = 'usermark'
