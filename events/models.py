@@ -74,7 +74,8 @@ class EventMember(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     attend_status_choice = (
         ('attend', 'Attend'),
-        ('absense', 'Absense')
+        ('absense', 'Absense'),
+        ('completed', 'Completed')
     )
     attend_status = models.CharField(choices=attend_status_choice, max_length=10)
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_created_user')
