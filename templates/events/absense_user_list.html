@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
-{% block title %}Complete Event List{% endblock title %}
-{% block breadcrumb %}Complete Event List{% endblock breadcrumb %}
+{% block title %}Absense User List{% endblock title %}
+{% block breadcrumb %}Absense User List{% endblock breadcrumb %}
 
 {% block content %}
     <div class="row">
@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-10">
-                            <h2>Complete Event List</h2>
+                            <h2>Absense User List</h2>
                         </div>
                         <div class="col-md-2">
                             <a class="btn btn-success" href="{% url 'event-create' %}">Create Event</a>
@@ -21,18 +21,18 @@
                         <thead>                  
                           <tr>
                             <th style="width: 10px">#</th>
-                            <th>Name</th>
-                            <th>Category</th>
+                            <th>User</th>
+                            <th>Event</th>
+                            <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
-                            {% for event in events %}
+                            {% for absenseuser in absenseuser %}
                                 <tr role="row">
                                     <td>{{ forloop.counter }}</td>
-                                    <td>
-                                        <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
-                                    </td>
-                                    <td>{{ event.category }}</td>
+                                    <td>{{ absenseuser.user }}</td>
+                                    <td>{{ absenseuser.event }}</td>
+                                    <td>{{ absenseuser.status }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
