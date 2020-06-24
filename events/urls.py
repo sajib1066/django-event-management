@@ -15,6 +15,7 @@ from .views import (
     AddEventUserWishListCreateView,
     RemoveEventUserWishDeleteView,
     UpdateEventStatusView,
+    CompleteEventList,
 )
 
 urlpatterns = [
@@ -32,4 +33,5 @@ urlpatterns = [
     path('add-event-wish-user/', AddEventUserWishListCreateView.as_view(), name='add-event-wish-user'),
     path('event-user-wish/<int:pk>/remove/', RemoveEventUserWishDeleteView.as_view(), name='remove-event-user-wish'),
     path('update-status/<int:pk>/event/', UpdateEventStatusView.as_view(), name='update-event-status'),
+    path('complete-event/', CompleteEventList.as_view(), name='complete-event')
 ]

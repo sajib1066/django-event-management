@@ -131,3 +131,12 @@ class UpdateEventStatusView(UpdateView):
     model = Event
     fields = ['status']
     template_name = 'events/update_event_status.html'
+
+
+class CompleteEventList(ListView):
+    model = Event
+    template_name = 'events/complete_event_list.html'
+    context_object_name = 'events'
+
+    def get_queryset(self):
+        return Event.objects.filter(status='finished')
