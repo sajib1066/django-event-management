@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from mapbox_location_field.models import LocationField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class EventCategory(models.Model):
@@ -25,7 +26,7 @@ class Event(models.Model):
     category = models.ForeignKey(EventCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     uid = models.PositiveIntegerField(unique=True)
-    description = models.TextField()
+    description = RichTextUploadingField()
     scheduled_status = models.IntegerField()
     venue = models.CharField(max_length=255)
     agenda = models.CharField(max_length=255)
