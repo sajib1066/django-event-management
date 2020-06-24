@@ -139,4 +139,4 @@ class CompleteEventList(ListView):
     context_object_name = 'events'
 
     def get_queryset(self):
-        return Event.objects.filter(status='finished')
+        return Event.objects.filter(status='complete')

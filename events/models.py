@@ -40,9 +40,9 @@ class Event(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status_choice = (
-        ('cancel', 'Cancel'),
+        ('canceled', 'Canceled'),
         ('running', 'Running'),
-        ('finished', 'Finished'),
+        ('complete', 'Complete'),
     )
     status = models.CharField(choices=status_choice, max_length=10)
 
@@ -75,7 +75,7 @@ class EventMember(models.Model):
     attend_status_choice = (
         ('attend', 'Attend'),
         ('absense', 'Absense'),
-        ('completed', 'Completed')
+        ('complete', 'Complete')
     )
     attend_status = models.CharField(choices=attend_status_choice, max_length=10)
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_created_user')
