@@ -68,7 +68,7 @@ class EventListView(ListView):
 
 class EventUpdateView(UpdateView):
     model = Event
-    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status']
+    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status', 'image', 'notification']
     template_name = 'events/edit_event.html'
 
 

@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy  }}
                         <button class="btn btn-success ml-2" type="submit">Update Event</button>
