@@ -35,6 +35,8 @@ class Event(models.Model):
     location = LocationField()
     points = models.PositiveIntegerField()
     maximum_attende = models.PositiveIntegerField()
+    image = models.ImageField(upload_to='event_image/')
+    notification = models.IntegerField()
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_created_user')
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_updated_user')
     created_date = models.DateField(auto_now_add=True)
@@ -115,20 +117,6 @@ class EventUserWishList(models.Model):
         return reverse('event-wish-list')
 
 
-class EventImage(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='event_image/')
-    position = models.PositiveIntegerField(unique=True)
-    created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventimage_created_user')
-    updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventimage_updated_user')
-    created_date = models.DateField(auto_now_add=True)
-    updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
-
-    def __str__(self):
-        return str(self.event)
-
-
 class UserCoin(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     gain_type = models.PositiveIntegerField()
@@ -144,29 +132,6 @@ class UserCoin(models.Model):
     
     def get_absolute_url(self):
         return reverse('user-mark')
-
-
-class EventNotofication(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventnotification_created_user')
-    updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventnotification_updated_user')
-    created_date = models.DateField(auto_now_add=True)
-    updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
-
-    def __str__(self):
-        return str(self.event)
-
-
-class EventNotoficationHistory(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    notification = models.ForeignKey(EventNotofication, on_delete=models.CASCADE)
-    user_view_status = models.PositiveIntegerField()
-    user_view_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
-
-    def __str__(self):
-        return str(self.notification)
 
 
 

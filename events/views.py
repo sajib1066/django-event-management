@@ -14,10 +14,7 @@ from .models import (
     EventJobCategoryLinking,
     EventMember,
     EventUserWishList,
-    EventImage,
     UserCoin,
-    EventNotofication,
-    EventNotoficationHistory,
 )
 from .forms import EventForm
 
@@ -48,7 +45,7 @@ class EventCategoryUpdateView(UpdateView):
 
 class EventCreateView(CreateView):
     model = Event
-    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status']
+    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status', 'image', 'notification']
     template_name = 'events/create_event.html'
 
     def form_valid(self, form):

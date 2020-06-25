@@ -8,10 +8,7 @@ from .models import (
     EventJobCategoryLinking,
     EventMember,
     EventUserWishList,
-    EventImage,
     UserCoin,
-    EventNotofication,
-    EventNotoficationHistory,
 )
 
 admin.site.register(EventCategory)
@@ -20,7 +17,4 @@ admin.site.register(JobCategory)
 admin.site.register(EventJobCategoryLinking)
 admin.site.register(EventMember)
 admin.site.register(EventUserWishList)
-admin.site.register(EventImage)
 admin.site.register(UserCoin)
-admin.site.register(EventNotofication)
-admin.site.register(EventNotoficationHistory)
