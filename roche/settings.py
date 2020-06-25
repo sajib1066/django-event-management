@@ -91,15 +91,15 @@ DATABASES = {
 }
 
 # Mongodb config
-DATABASES = {
-        'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'rochedb',
-        'HOST': 'mongodb+srv://sajib:nothing1234@cluster0-jjia5.mongodb.net/rochedb?retryWrites=true&w=majority',
-        'USER': 'sajib',
-        'PASSWORD': 'nothing1234',
-    }
-}
+# DATABASES = {
+#         'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'rochedb',
+#         'HOST': 'mongodb+srv://sajib:nothing1234@cluster0-jjia5.mongodb.net/rochedb?retryWrites=true&w=majority',
+#         'USER': 'sajib',
+#         'PASSWORD': 'nothing1234',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
