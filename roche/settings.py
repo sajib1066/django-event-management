@@ -83,23 +83,23 @@ WSGI_APPLICATION = 'roche.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # Sqlite config 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Mongodb config
 # DATABASES = {
-#         'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': '<Test_DB>',
-#         'HOST': 'mongodb+srv://sajib:<nothing1234>@cluster0-jjia5.mongodb.net/<Test_DB>?retryWrites=true&w=majority',
-#         'USER': '<sajib>',
-#         'PASSWORD': '<nothing1234>',
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+# Mongodb config
+DATABASES = {
+        'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'rochedb',
+        'HOST': 'mongodb+srv://sajib:nothing1234@cluster0-jjia5.mongodb.net/rochedb?retryWrites=true&w=majority',
+        'USER': 'sajib',
+        'PASSWORD': 'nothing1234',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
