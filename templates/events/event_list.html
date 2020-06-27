@@ -38,13 +38,22 @@
                                       <img src="{{ event.image.url }}" alt="Image" height="100px" width="100px">
                                   </td>
                                   <td>
-                                    <a href="{% url 'update-event-status' event.id %}">{{ event.status }}</a>
+                                      {% if event.status == 'complete' %}
+                                        <a href="{% url 'update-event-status' event.id %}" class="text-success">{{ event.status|title }}</a>
+                                      {% elif event.status == 'running' %}
+                                        <a href="{% url 'update-event-status' event.id %}" class="text-primary">{{ event.status|title }}</a>
+                                      {% else %}
+                                        <a href="{% url 'update-event-status' event.id %}" class="text-danger">{{ event.status|title }}</a>
+                                      {% endif %}
                                   </td>
                                   <td>
-                                      <a class="btn btn-info" href="{% url 'event-edit' event.pk %}">
-                                          <i class="fa fa-edit"></i>
+                                      <a class="btn btn-info" href="{% url 'event-detail' event.pk %}" title="view">
+                                          <i class="fa fa-eye"></i>
                                       </a>
-                                      <a class="btn btn-danger" href="{% url 'event-delete' event.pk %}">
+                                      <a class="btn btn-info" href="{% url 'event-edit' event.pk %}" title="edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                      <a class="btn btn-danger" href="{% url 'event-delete' event.pk %}" title="delete">
                                           <i class="fa fa-trash"></i>
                                       </a>
                                   </td>
