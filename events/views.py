@@ -43,6 +43,12 @@ class EventCategoryUpdateView(UpdateView):
     template_name = 'events/edit_event_category.html'
 
 
+class EventCategoryDeleteView(DeleteView):
+    model =  EventCategory
+    template_name = 'events/event_category_delete.html'
+    success_url = reverse_lazy('event-category-list')
+
+
 class EventCreateView(CreateView):
     model = Event
     fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status', 'image', 'notification']
