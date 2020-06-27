@@ -84,6 +84,12 @@ class EventDetailView(DetailView):
     context_object_name = 'event'
 
 
+class EventDeleteView(DeleteView):
+    model = Event
+    template_name = 'events/delete_event.html'
+    success_url = reverse_lazy('event-list')
+
+
 class AddEventMemberCreateView(CreateView):
     model = EventMember
     fields = ['event', 'user', 'attend_status', 'status']
