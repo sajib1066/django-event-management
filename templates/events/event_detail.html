@@ -2,6 +2,16 @@
 {% block title %}Event Detail{% endblock title %}
 {% block breadcrumb %}Event Detail{% endblock breadcrumb %}
 
+{% block extrahead %}
+    {% load static %}
+    <style>
+        @font-face { font-family: JuneBug; src: url({% static 'fonts/Minion-Regular.ttf' %}); }
+        span {
+            font-size: 20px;
+        }
+    </style>
+{% endblock extrahead %}
+
 {% block content %}
     <div class="row">
         <div class="col-md-12">
@@ -17,18 +27,27 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h2>Event Name: {{ event.name }}</h2>
-                    <h4>Event Category: {{ event.category }}</h4>
-                    <h4>Uid: {{ event.uid }}</h4>
-                    <h4>Description: {{ event.descrih4tion }}</h4>
-                    <h4>Scheduled Status: {{ event.scheduled_status }}</h4>
-                    <h4>Venue: {{ event.venue }}</h4>
-                    <h4>Agenda: {{ event.agenda }}</h4>
-                    <h4>Start Date: {{ event.start_date }}</h4>
-                    <h4>End Date: {{ event.end_date }}</h4>
-                    <h4>Location: {{ event.location }}</h4>
-                    <h4>Points: {{ event.points }}</h4>
-                    <h4>Maximum Attende: {{ event.maximum_attende }}</h4>
+                    <img src="{{ event.image.url }}" alt="Image" height="50%" width="100%">
+                    <div class="row">
+                        <div class="com-md-6">
+                            <table class="table">
+                                <tr>
+                                    <td><span>Event Name: {{ event.name }}</span></td>
+                                    <td><span>Event Category: {{ event.category }}</span></td>
+                                    <td><span>Start Date: {{ event.start_date }}</span></td>
+                                    <td><span>End Date: {{ event.end_date }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span>Venue: {{ event.venue }}</span></td>
+                                    <td><span>Scheduled Status: {{ event.scheduled_status }}</span></td>
+                                    <td><span>Points: {{ event.points }}</span></td>
+                                    <td><span>Maximum Attende: {{ event.maximum_attende }}</span></td>
+                                </tr>
+                            </table>
+                            <p>{{ event.description|safe }}</p>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
