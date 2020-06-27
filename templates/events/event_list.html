@@ -17,38 +17,41 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>                  
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Photo</th>
-                            <th>Status</th>
-                            <th style="width: 40px">Action</th>
-                          </tr>
+                      <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+                        <thead>
+                            <tr role="row">
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {% for event in events %}
-                                <tr role="row">
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>
-                                        <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
-                                    </td>
-                                    <td>{{ event.category }}</td>
-                                    <td><img src="{{ event.image.url }}" alt="Image" height="100px" width="100px"></td>
-                                    <td>
-                                        <a href="{% url 'update-event-status' event.id %}">{{ event.status }}</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" href="{% url 'event-edit' event.pk %}">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                              <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ event.name }}</td>
+                                  <td>{{ event.category }}</td>
+                                  <td>
+                                      <img src="{{ event.image.url }}" alt="Image" height="100px" width="100px">
+                                  </td>
+                                  <td>
+                                    <a href="{% url 'update-event-status' event.id %}">{{ event.status }}</a>
+                                  </td>
+                                  <td>
+                                      <a class="btn btn-info" href="{% url 'event-edit' event.pk %}">
+                                          <i class="fa fa-edit"></i>
+                                      </a>
+                                      <a class="btn btn-danger" href="{% url 'event-edit' event.pk %}">
+                                          <i class="fa fa-trash"></i>
+                                      </a>
+                                  </td>
+                              </tr>
                             {% endfor %}
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
         </div>
