@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from six.moves import urllib
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,23 +84,26 @@ WSGI_APPLICATION = 'roche.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # Sqlite config 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Mongodb config
 # DATABASES = {
-#         'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'rochedb',
-#         'HOST': 'mongodb+srv://sajib:nothing1234@cluster0-jjia5.mongodb.net/rochedb?retryWrites=true&w=majority',
-#         'USER': 'sajib',
-#         'PASSWORD': 'nothing1234',
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+# Mongodb config
+DATABASES = {
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'rochedb',
+           'CLIENT': {
+              'host': 'mongodb+srv://sajib:' + urllib.parse.quote_plus('nothing1234') + '@cluster0-jjia5.mongodb.net/rochedb?retryWrites=true&w=majority',
+              'port': 27017,
+              'username': 'sajib',
+              'password': 'nothing1234',
+            }
+       }
+   }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
