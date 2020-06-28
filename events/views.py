@@ -149,7 +149,7 @@ class CompleteEventList(ListView):
     context_object_name = 'events'
 
     def get_queryset(self):
-        return Event.objects.filter(status='complete')
+        return Event.objects.filter(status='completed')
 
 
 class AbsenseUserList(ListView):
@@ -158,7 +158,7 @@ class AbsenseUserList(ListView):
     context_object_name = 'absenseuser'
 
     def get_queryset(self):
-        return EventMember.objects.filter(attend_status='absense')
+        return EventMember.objects.filter(attend_status='absent')
 
 
 class CompleteEventUserList(ListView):
