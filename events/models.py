@@ -13,7 +13,14 @@ class EventCategory(models.Model):
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
+    status_choice = (
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('blocked', 'Blocked'),
+        ('completed', 'Completed'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
     def __str__(self):
         return self.name
@@ -42,9 +49,12 @@ class Event(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status_choice = (
-        ('canceled', 'Canceled'),
-        ('running', 'Running'),
-        ('complete', 'Complete'),
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('time out', 'Time Out'),
+        ('completed', 'Completed'),
+        ('cancel', 'Cancel'),
     )
     status = models.CharField(choices=status_choice, max_length=10)
 
@@ -65,7 +75,14 @@ class JobCategory(models.Model):
 class EventJobCategoryLinking(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
-    status = models.IntegerField()
+    status_choice = (
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('blocked', 'Blocked'),
+        ('completed', 'Completed'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
     def __str__(self):
         return str(self.event)
@@ -75,16 +92,25 @@ class EventMember(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     attend_status_choice = (
-        ('attend', 'Attend'),
-        ('absense', 'Absense'),
-        ('complete', 'Complete')
+        ('waiting', 'Waiting'),
+        ('attending', 'Attending'),
+        ('completed', 'Completed'),
+        ('absent', 'Absent'),
+        ('cancelled', 'Cancelled'),
     )
     attend_status = models.CharField(choices=attend_status_choice, max_length=10)
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_created_user')
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventmember_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
+    status_choice = (
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('blocked', 'Blocked'),
+        ('completed', 'Completed'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
 
     class Meta:
@@ -104,7 +130,14 @@ class EventUserWishList(models.Model):
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='eventwishlist_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
+    status_choice = (
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('blocked', 'Blocked'),
+        ('completed', 'Completed'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
 
     class Meta:
@@ -125,7 +158,14 @@ class UserCoin(models.Model):
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='usercoin_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
-    status = models.IntegerField()
+    status_choice = (
+        ('disabled', 'Disabled'),
+        ('active', 'Active'),
+        ('deleted', 'Deleted'),
+        ('blocked', 'Blocked'),
+        ('completed', 'Completed'),
+    )
+    status = models.CharField(choices=status_choice, max_length=10)
 
     def __str__(self):
         return str(self.user)
