@@ -8,10 +8,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                             <h5>Event List</h5>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
+                            <a class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</a> 
+                            <a class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</a>
                             <a class="btn btn-success" href="{% url 'event-create' %}">Create Event</a>
                         </div>
                     </div>
@@ -23,7 +25,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Category</th>
-                                <th>Image</th>
+                                <th class="event_image">Image</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -34,8 +36,8 @@
                                   <td>{{ forloop.counter }}</td>
                                   <td>{{ event.name }}</td>
                                   <td>{{ event.category }}</td>
-                                  <td>
-                                      <img src="{{ event.image.url }}" alt="Image" height="100px" width="100px">
+                                  <td class="event_image">
+                                      <img class="event_image" src="{{ event.image.url }}" alt="Image" height="100px" width="100px">
                                   </td>
                                   <td>
                                       {% if event.status == 'complete' %}
@@ -66,3 +68,47 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block extrascript %}
+<script>
+    // Get the elements with class="column"
+    var elements = document.getElementsByClassName("table");
+    var myobj = document.getElementsByClassName("event_image");
+    // Declare a loop variable
+    var i;
+
+    // List View
+    function listView() {
+        for (i = 0; i < elements.length; i++) {
+
+            var appBanners = document.getElementsByClassName('event_image');
+
+            for (var i = 0; i < appBanners.length; i ++) {
+                appBanners[i].style.display = 'none';
+            }
+        }
+    }
+    
+    // Grid View
+    function gridView() {
+      for (i = 0; i < elements.length; i++) {
+        var appBanners = document.getElementsByClassName('event_image');
+
+        for (var i = 0; i < appBanners.length; i ++) {
+            appBanners[i].style.display = 'block';
+        }
+      }
+    }
+    
+    /* Optional: Add active class to the current button (highlight it) */
+    var container = document.getElementById("btnContainer");
+    var btns = container.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+    </script>
+{% endblock extrascript %}
