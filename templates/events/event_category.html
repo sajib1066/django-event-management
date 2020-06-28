@@ -8,14 +8,25 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <h5>Event Category List</h5>
                         </div>
-                        <div class="col-md-4">
-                            <a class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</a> 
-                            <a class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</a>
-                            <a class="btn btn-success" href="{% url 'create-event-category' %}">Create New Category</a>
-                              
+                        <div class="col-md-7">
+                            <div class="row">
+                                <form class="form-inline ml-3">
+                                    <div class="input-group input-group-sm">
+                                      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                      <div class="input-group-append">
+                                        <button class="btn btn-navbar" type="submit">
+                                          <i class="fas fa-search"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                <a class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</a> 
+                                <a class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</a>
+                                <a class="btn btn-success" href="{% url 'create-event-category' %}">Create New Category</a>
+                            </div>
                         </div>
                     </div>
                 </div>
