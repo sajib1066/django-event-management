@@ -6,6 +6,7 @@ from django.views.generic import (
     DeleteView,
 )
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 from .models import (
     EventCategory,
@@ -184,3 +185,14 @@ class UserMarkList(ListView):
     model = UserCoin
     template_name = 'events/user_mark_list.html'
     context_object_name = 'usermark'
+
+
+def search_event_category(request):
+    if request.method == 'POST':
+       data = request.POST['search']
+       event_category = EventCategory.objects.filter(name__icontains=data)
+       context = {
+           'event_category': event_category
+       }
+       return render(request, 'events/event_category.html', context)
+    return render(request, 'events/event_category.html')
