@@ -26,7 +26,7 @@
                                   </form>
                                 <a class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</a> 
                                 <a class="btn active" onclick="gridView()"><i class="fa fa-th-large"></i> Grid</a>
-                                <a class="btn btn-success" href="{% url 'event-create' %}">Create Event</a>
+                                <a class="btn btn-success" href="{% url 'event-create' %}">Create New Event</a>
                             </div>
                         </div>
                     </div>
@@ -53,9 +53,9 @@
                                       <img class="event_image" src="{{ event.image.url }}" alt="Image" height="100px" width="100px">
                                   </td>
                                   <td>
-                                      {% if event.status == 'complete' %}
+                                      {% if event.status == 'active' %}
                                         <a href="{% url 'update-event-status' event.id %}" class="text-success">{{ event.status|title }}</a>
-                                      {% elif event.status == 'running' %}
+                                      {% elif event.status == 'completed' %}
                                         <a href="{% url 'update-event-status' event.id %}" class="text-primary">{{ event.status|title }}</a>
                                       {% else %}
                                         <a href="{% url 'update-event-status' event.id %}" class="text-danger">{{ event.status|title }}</a>
