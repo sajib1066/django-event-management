@@ -22,7 +22,8 @@ from .views import (
     CompleteEventUserList,
     CreateUserMark,
     UserMarkList,
-    search_event_category
+    search_event_category,
+    search_event,
 )
 
 urlpatterns = [
@@ -47,5 +48,6 @@ urlpatterns = [
     path('complete-event-user/', CompleteEventUserList.as_view(), name='complete-event-user'),
     path('create-user-mark/', CreateUserMark.as_view(), name='create-user-mark'),
     path('user-mark/', UserMarkList.as_view(), name='user-mark'),
-    path('search_category/', search_event_category, name='search-event-category')
+    path('search_category/', search_event_category, name='search-event-category'),
+    path('search_event/', search_event, name='search-event'),
 ]

@@ -196,3 +196,14 @@ def search_event_category(request):
        }
        return render(request, 'events/event_category.html', context)
     return render(request, 'events/event_category.html')
+
+
+def search_event(request):
+    if request.method == 'POST':
+       data = request.POST['search']
+       events = Event.objects.filter(name__icontains=data)
+       context = {
+           'events': events
+       }
+       return render(request, 'events/event_list.html', context)
+    return render(request, 'events/event_list.html')
