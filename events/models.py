@@ -28,22 +28,29 @@ class EventCategory(models.Model):
     def get_absolute_url(self):
         return reverse('event-category-list')
 
+class JobCategory(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Event(models.Model):
     category = models.ForeignKey(EventCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     uid = models.PositiveIntegerField(unique=True)
     description = RichTextUploadingField()
-    scheduled_status = models.IntegerField()
+    job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    select_scheduled_status = (
+        ('yet to scheduled', 'Yet to Scheduled'),
+        ('scheduled', 'Scheduled')
+    )
+    scheduled_status = models.CharField(max_length=25, choices=select_scheduled_status)
     venue = models.CharField(max_length=255)
-    agenda = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
     location = LocationField()
     points = models.PositiveIntegerField()
     maximum_attende = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='event_image/')
-    notification = models.IntegerField()
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_created_user')
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_updated_user')
     created_date = models.DateField(auto_now_add=True)
@@ -64,12 +71,18 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event-list')
 
+class EventImage(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='event_image/')
 
-class JobCategory(models.Model):
-    name = models.CharField(max_length=255, unique=True)
 
-    def __str__(self):
-        return self.name
+class EventAgenda(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    session_name = models.CharField(max_length=120)
+    speaker_name = models.CharField(max_length=120)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    venue_name = models.CharField(max_length=255)
 
 
 class EventJobCategoryLinking(models.Model):
