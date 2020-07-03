@@ -51,8 +51,8 @@ class Event(models.Model):
     location = LocationField()
     points = models.PositiveIntegerField()
     maximum_attende = models.PositiveIntegerField()
-    created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_created_user')
-    updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='event_updated_user')
+    created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True, related_name='event_created_user')
+    updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True, related_name='event_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status_choice = (
@@ -70,6 +70,13 @@ class Event(models.Model):
     
     def get_absolute_url(self):
         return reverse('event-list')
+    
+    def created_updated(model, request):
+        obj = model.objects.latest('pk')
+        if obj.created_by is None:
+            obj.created_by = request.user
+        obj.updated_by = request.user
+        obj.save()
 
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
