@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mapbox_location_field',
     'ckeditor',
     'ckeditor_uploader',
+    'betterforms',
 
     # Local apps
     'events.apps.EventsConfig',

@@ -4,9 +4,10 @@ from django.views.generic import (
     UpdateView,
     DetailView,
     DeleteView,
+    View,
 )
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import (
     EventCategory,
@@ -16,8 +17,11 @@ from .models import (
     EventMember,
     EventUserWishList,
     UserCoin,
+    EventImage,
+    EventAgenda
+
 )
-from .forms import EventForm
+from .forms import EventForm, EventImageForm, EventAgendaForm, EventCreateMultiForm
 
 
 # Event category list view
@@ -49,22 +53,112 @@ class EventCategoryDeleteView(DeleteView):
     template_name = 'events/event_category_delete.html'
     success_url = reverse_lazy('event-category-list')
 
+def create_event(request):
+    event_form = EventForm()
+    event_image_form = EventImageForm()
+    event_agenda_form = EventAgendaForm()
+    catg = EventCategory.objects.all()
+    if request.method == 'POST':
+        event_form = EventForm(request.POST)
+        event_image_form = EventImageForm(request.POST, request.FILES)
+        event_agenda_form = EventAgendaForm(request.POST)
+        if event_form.is_valid() and event_image_form.is_valid() and event_agenda_form.is_valid():
+            # category = event_form.cleaned_data['category']
+            # name = event_form.cleaned_data['name']
+            # uid = event_form.cleaned_data['uid']
+            # description = event_form.cleaned_data['description']
+            # job_category = event_form.cleaned_data['job_category']
+            # scheduled_status = event_form.cleaned_data['scheduled_status']
+            # venue = event_form.cleaned_data['venue']
+            # start_date = event_form.cleaned_data['start_date']
+            # end_date = event_form.cleaned_data['end_date']
+            # location = event_form.cleaned_data['location']
+            # points = event_form.cleaned_data['points']
+            # maximum_attende = event_form.cleaned_data['maximum_attende']
+            # status = event_form.cleaned_data['status']
+            # print('--------------------',location,'-------------')
+            # event = Event.objects.create(
+            #     category=category,
+            #     name=name,
+            #     uid=uid,
+            #     description=description,
+            #     job_category=job_category,
+            #     scheduled_status=scheduled_status,
+            #     venue=venue,
+            #     start_date=start_date,
+            #     end_date=end_date,
+            #     location=location,
+            #     points=points,
+            #     maximum_attende=maximum_attende,
+            #     status=status,
+            #     created_user=request.user,
+            #     updated_user=request.user
+            # )
+            ef = event_form.save()
+            created_updated(Event, request)
+            event_image_form.save(commit=False)
+            event_image_form.event_form = ef
+            event_image_form.save()
+            
+            event_agenda_form.save(commit=False)
+            event_agenda_form.event_form = ef
+            event_agenda_form.save()
+
+            # session_name = event_agenda_form.cleaned_data['session_name']
+            # speaker_name = event_agenda_form.cleaned_data['speaker_name']
+            # start_time = event_agenda_form.cleaned_data['start_time']
+            # end_time = event_agenda_form.cleaned_data['end_time']
+            # venue_name = event_agenda_form.cleaned_data['venue_name']
+            # EventAgenda.objects.create(
+            #     event=event,
+            #     session_name=session_name,
+            #     speaker_name=speaker_name,
+            #     start_time=start_time,
+            #     end_time=end_time,
+            #     venue_name=venue_name
+            # )
+            return redirect('event-list')
+    context = {
+        'form': event_form,
+        'form_1': event_image_form,
+        'form_2': event_agenda_form,
+        'ctg': catg
+    }
+    return render(request, 'events/create.html', context)
 
 class EventCreateView(CreateView):
-    model = Event
-    fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status', 'image', 'notification']
+    form_class = EventCreateMultiForm
     template_name = 'events/create_event.html'
+    success_url = reverse_lazy('event-list')
 
     def form_valid(self, form):
-        form.instance.created_user = self.request.user
-        form.instance.updated_user = self.request.user
+        evt = form['event'].save()
+        event_image = form['event_image'].save(commit=False)
+        event_image.event = evt
+        event_image.save()
+
+        event_agenda = form['event_agenda'].save(commit=False)
+        event_agenda.event = evt
+        event_agenda.save()
+
         return super().form_valid(form)
+
+
+# class EventCreateView(CreateView):
+#     model = Event
+#     fields = ['category', 'name', 'uid', 'description', 'scheduled_status', 'venue', 'agenda', 'start_date', 'end_date', 'location', 'points', 'maximum_attende', 'status', 'image', 'notification']
+#     template_name = 'events/create_event.html'
+
+#     def form_valid(self, form):
+#         form.instance.created_user = self.request.user
+#         form.instance.updated_user = self.request.user
+#         return super().form_valid(form)
     
-    def get_form(self, form_class=EventForm):
-        form = super(EventCreateView, self).get_form(form_class)
-        form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
-        form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
-        return form
+#     def get_form(self, form_class=EventForm):
+#         form = super(EventCreateView, self).get_form(form_class)
+#         form.fields['start_date'].widget.attrs.update({'class': 'datepicker'})
+#         form.fields['end_date'].widget.attrs.update({'class': 'datepicker'})
+#         return form
 
 
 class EventListView(ListView):

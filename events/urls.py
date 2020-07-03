@@ -24,6 +24,7 @@ from .views import (
     UserMarkList,
     search_event_category,
     search_event,
+    create_event,
 )
 
 urlpatterns = [
@@ -50,4 +51,5 @@ urlpatterns = [
     path('user-mark/', UserMarkList.as_view(), name='user-mark'),
     path('search_category/', search_event_category, name='search-event-category'),
     path('search_event/', search_event, name='search-event'),
+    path('create/', create_event, name='create'),
 ]

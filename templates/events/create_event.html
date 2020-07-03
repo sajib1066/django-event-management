@@ -32,7 +32,16 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
+                        {% for ctg in ctg %}
+                            <a href="">
+                                <img src="{{ ctg.image.url }}" alt="" style="height: 50px; width: 50px; border-radius: 50%;">
+                            </a>
+                            <br>
+                            {{ ctg.name }}
+                        {% endfor %}
                         {{ form|crispy  }}
+                        {{ form_1|crispy  }}
+                        {{ form_2|crispy }}
                         <button class="btn btn-success ml-2" type="submit">Create Event</button>
                     </form>
                     {{ form.media }}
