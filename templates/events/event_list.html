@@ -50,7 +50,7 @@
                                   <td>{{ event.name }}</td>
                                   <td>{{ event.category }}</td>
                                   <td class="event_image">
-                                      <img class="event_image" src="{{ event__eventimage__image.url }}" alt="Image" height="100px" width="100px">
+                                      <img class="event_image" src="{{ event.eventimage.image.url }}" alt="Image" height="100px" width="100px">
                                   </td>
                                   <td>
                                       {% if event.status == 'active' %}
