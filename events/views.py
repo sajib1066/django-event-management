@@ -142,6 +142,12 @@ class EventCreateView(CreateView):
         event_agenda.save()
 
         return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['ctg'] = EventCategory.objects.all()
+        return context
 
 
 # class EventCreateView(CreateView):

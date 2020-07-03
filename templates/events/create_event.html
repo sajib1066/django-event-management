@@ -9,6 +9,10 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     {% load mapbox_location_field_tags %}
     {% location_field_includes %}
     {% include_jquery %}
@@ -32,12 +36,13 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% for ctg in ctg %}
+                        {% for c in ctg %}
+                        <input type="radio" name="category" value="{{ c.id }}">
                             <a href="">
-                                <img src="{{ ctg.image.url }}" alt="" style="height: 50px; width: 50px; border-radius: 50%;">
+                                <img src="{{ c.image.url }}" alt="" style="height: 50px; width: 50px; border-radius: 50%;">
                             </a>
                             <br>
-                            {{ ctg.name }}
+                            {{ c.name }}
                         {% endfor %}
                         {{ form|crispy  }}
                         {{ form_1|crispy  }}
