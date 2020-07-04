@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="row m-2">
+                        <!-- <div class="row m-2">
                             {% for c in ctg %}
                             <input type="radio" name="category" value="{{ c.id }}">
                                 <a href="">
@@ -42,7 +42,7 @@
                                 </a>
                                 <br>
                             {% endfor %}
-                        </div>
+                        </div> -->
                         {{ form|crispy }}
                         {{ form_1|crispy }}
                         {{ form_2|crispy }}
