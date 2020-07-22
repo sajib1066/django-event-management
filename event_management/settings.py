@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'roche.urls'
+ROOT_URLCONF = 'event_management.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'roche.wsgi.application'
+WSGI_APPLICATION = 'event_management.wsgi.application'
 
 
 # Database
