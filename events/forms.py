@@ -32,6 +32,11 @@ class EventAgendaForm(forms.ModelForm):
         model = EventAgenda
         fields = ['session_name', 'speaker_name', 'start_time', 'end_time', 'venue_name']
 
+        widgets = {
+            'start_time': forms.TextInput(attrs={'class': 'form-control', 'type': 'time'}),
+            'end_time': forms.TextInput(attrs={'class': 'form-control', 'type': 'time'}),
+        }
+
 
 class EventCreateMultiForm(MultiModelForm):
     form_classes = {
