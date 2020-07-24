@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
 
-from .views import DashboardView
+from .views import dashboard
 from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', DashboardView.as_view(), name='dashboard'),
+    path('', dashboard, name='dashboard'),
     path('events/', include('events.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
