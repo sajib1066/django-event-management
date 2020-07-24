@@ -7,19 +7,11 @@ def dashboard(request):
     user = User.objects.count()
     event_ctg = EventCategory.objects.count()
     event = Event.objects.count()
-    try:
-        complete_event = Event.objects.filter(status=completed).count()
-        context = {
-            'user': user,
-            'event_ctg': event_ctg,
-            'event': event,
-            'complete_event': complete_event
-        }
-    except Exception as e:
-        print(e)
+    complete_event = Event.objects.filter(status='completed').count()
     context = {
         'user': user,
         'event_ctg': event_ctg,
-        'event': event
+        'event': event,
+        'complete_event': complete_event
     }
     return render(request, 'dashboard.html', context)
