@@ -81,4 +81,66 @@
     </div>
     <!-- ./col -->
   </div>
+  <!-- Event List -->
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h5>Event List</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                  <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+                    <thead>
+                        <tr role="row">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Venue</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                          <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ event.name|capfirst }}</td>
+                              <td>{{ event.category }}</td>
+                              <td>{{ event.start_date }}</td>
+                              <td>{{ event.end_date }}</td>
+                              <td>{{ event.venue|capfirst }}</td>
+                              <td>
+                                  {% if event.status == 'active' %}
+                                    <a href="{% url 'update-event-status' event.id %}" class="text-success">{{ event.status|title }}</a>
+                                  {% elif event.status == 'completed' %}
+                                    <a href="{% url 'update-event-status' event.id %}" class="text-primary">{{ event.status|title }}</a>
+                                  {% else %}
+                                    <a href="{% url 'update-event-status' event.id %}" class="text-danger">{{ event.status|title }}</a>
+                                  {% endif %}
+                              </td>
+                              <td>
+                                  <a class="btn btn-info" href="{% url 'event-detail' event.pk %}" title="view">
+                                      <i class="fa fa-eye"></i>
+                                  </a>
+                                  <a class="btn btn-info" href="{% url 'event-edit' event.pk %}" title="edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                  <a class="btn btn-danger" href="{% url 'event-delete' event.pk %}" title="delete">
+                                      <i class="fa fa-trash"></i>
+                                  </a>
+                              </td>
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

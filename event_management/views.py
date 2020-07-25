@@ -12,11 +12,13 @@ def dashboard(request):
     event_ctg = EventCategory.objects.count()
     event = Event.objects.count()
     complete_event = Event.objects.filter(status='completed').count()
+    events = Event.objects.all()
     context = {
         'user': user,
         'event_ctg': event_ctg,
         'event': event,
-        'complete_event': complete_event
+        'complete_event': complete_event,
+        'events': events
     }
     return render(request, 'dashboard.html', context)
 
