@@ -33,3 +33,7 @@ def login_page(request):
         'form': forms
     }
     return render(request, 'login.html', context)
+
+def logut_page(request):
+    logout(request)
+    return redirect('login')
