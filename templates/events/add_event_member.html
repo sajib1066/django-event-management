@@ -10,10 +10,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-10">
-                            <h5>Add Event Member</h5>
+                            <h5>Ajouter membre à l'événement</h5>
                         </div>
                         <div class="col-md-2">
-                            <a class="btn btn-success" href="{% url 'join-event-list' %}">Join Event List</a>
+                            <a class="btn btn-success" href="{% url 'join-event-list' %}">Ajouter à la liste</a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form|crispy  }}
-                        <button class="btn btn-success ml-2" type="submit">Add Member</button>
+                        <button class="btn btn-success ml-2" type="submit">Ajouter membre</button>
                     </form>
                 </div>
             </div>
